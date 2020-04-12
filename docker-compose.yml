@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   db:
     image: postgres
@@ -13,22 +13,7 @@ services:
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
       - .:/app
-    environment:
-      - WEBPACKER_DEV_SERVER_HOST=webpacker
     ports:
       - "3000:3000"
     depends_on:
       - db
-
-  # https://github.com/rails/webpacker/blob/master/docs/docker.md
-  webpacker:
-    build: .
-    environment:
-      - NODE_ENV=development
-      - RAILS_ENV=development
-      - WEBPACKER_DEV_SERVER_HOST=127.0.0.0 # NOTE: Is it true?
-    command: ./bin/webpack-dev-server
-    volumes:
-      - .:/webpacker-example-app
-    ports:
-      - '3035:3035'
