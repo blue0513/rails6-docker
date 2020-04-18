@@ -8,11 +8,13 @@ default: &default
 
 development:
   <<: *default
-  database: app_development
+  adapter: sqlite3
+  database: db/development.sqlite3
 
 test:
   <<: *default
-  database: app_test
+  adapter: sqlite3
+  database: db/test.sqlite3
 
 # production:
 #   <<: *default
