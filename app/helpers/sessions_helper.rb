@@ -1,7 +1,9 @@
 module SessionsHelper
+  include JwtHelper
 
   def log_in(user)
     session[:user_id] = user.id
+    cookies.permanent[:aoki_jwt] = generate_jwt
   end
 
   def current_user
