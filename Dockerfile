@@ -5,6 +5,8 @@ WORKDIR /app
 # bundle install
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+
+RUN bundle config set path 'vendor/bundle'
 RUN bundle install
 
 # yarn install
